@@ -1,0 +1,2 @@
+C:\Users\38591\Desktop\Projekt\PAUP-2024\MVC_Unit\obj\Debug\PAUP-2024_Unit_Test.csproj.AssemblyReference.cache
+C:\Users\38591\Desktop\Projekt\PAUP-2024\MVC_Unit\obj\Debug\PAUP-2024_Unit_Test.csproj.CoreCompileInputs.cache

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<PAUP_2024.Models.Aktivnosti>
+@{
+    ViewBag.Title = "Popis Aktivnosti";
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Sve aktivnosti</h2>
+                <a href="@Url.Action("Index")" class="btn btn-primary">Prikaži sve aktivnosti</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Hodanje</h2>
+                <a href="@Url.Action("Hodanje")" class="btn btn-primary">Prikaži aktivnosti - hodanje</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Trčanje</h2>
+                <a href="@Url.Action("Trcanje")" class="btn btn-primary">Prikaži aktivnost - trčanje</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Biciklizam</h2>
+                <a href="@Url.Action("Biciklizam")" class="btn btn-primary">Prikaži aktivnosti - biciklizam</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Plivanje</h2>
+                <a href="@Url.Action("Plivanje")" class="btn btn-primary">Prikaži aktivnosti - plivanje</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Planinarenje</h2>
+                <a href="@Url.Action("Planinarenje")" class="btn btn-primary">Prikaži aktivnosti - planinarenje</a>
+            </div>
+        </div>
+    </div>
+</div>

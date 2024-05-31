@@ -1,0 +1,57 @@
+﻿@model PAUP_2024.Models.Aktivnosti
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalji aktivnosti</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nazivAktivnosti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazivAktivnosti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vrstaAktivnosti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vrstaAktivnosti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vrijemeTrajanjaAktivnosti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vrijemeTrajanjaAktivnosti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.duljinaAktivnosti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.duljinaAktivnosti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datumAktivnosti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datumAktivnosti)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Uredi", "Edit", new { id = Model.ID }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Natrag na popis", "PopisAktivnosti", null, new { @class = "btn btn-primary" })
+</p>

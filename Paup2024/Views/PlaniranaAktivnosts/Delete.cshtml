@@ -1,0 +1,49 @@
+﻿@model PAUP_2024.Models.PlaniranaAktivnost
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Brisanje buduće aktivnosti</h2>
+
+<h3>Jeste li sigurni da želite izbrisati buduću aktivnosti?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nazivAktivnosti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazivAktivnosti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vrstaAktivnosti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vrstaAktivnosti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datumAktivnosti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datumAktivnosti)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Izbriši" class="btn btn-danger" /> |
+            @Html.ActionLink("Natrag na popis", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

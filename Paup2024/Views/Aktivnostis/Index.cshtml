@@ -1,0 +1,87 @@
+﻿@using PAUP_2024.Razno
+@model IEnumerable<PAUP_2024.Models.Aktivnosti>
+
+@{
+    ViewBag.Title = "Aktivnosti";
+}
+
+<h2>Sve aktivnosti</h2>
+
+<p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success btn-sm" })
+    }
+    @Html.ActionLink("Natrag na popis", "PopisAktivnosti", null, new { @class = "btn btn-primary btn-sm" })
+</p>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nazivAktivnosti)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vrstaAktivnosti)
+        </th>
+        <th>
+            Vrijeme izvođenja (min)
+        </th>
+        <th>
+            Duljina aktivnosti (m)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datumAktivnosti)
+        </th>
+        @if (User.Identity.IsAuthenticated && (User as LogiraniKorisnik).IsInRole(OvlastKorisnik.Administrator))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.korisnikId)
+            </th>
+        }
+        @if (User.Identity.IsAuthenticated)
+        {
+            <th>
+                Akcije
+            </th>
+        }
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nazivAktivnosti)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vrstaAktivnosti)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vrijemeTrajanjaAktivnosti)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.duljinaAktivnosti)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datumAktivnosti)
+            </td>
+            @if (User.Identity.IsAuthenticated && (User as LogiraniKorisnik).IsInRole(OvlastKorisnik.Administrator))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.korisnikId)
+                </td>
+            }
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+                    @Html.ActionLink("Uredi", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("Detalji", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-sm" })
+                    @Html.ActionLink("Izbriši", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            }
+        </tr>
+    }
+
+</table>
+
+

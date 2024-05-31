@@ -1,0 +1,105 @@
+﻿@using PAUP_2024.Razno
+@model IEnumerable<PAUP_2024.Models.Aktivnosti>
+@{
+    ViewBag.Title = "Planinarenje";
+}
+
+<h2>Planinarenje</h2>
+
+@{
+    ViewBag.Title = "Planinarenje";
+    string nazivIcon = ViewBag.CurrentSort == "Naziv" ? "▲" : (ViewBag.CurrentSort == "Naziv_desc" ? "▼" : "");
+    string trajanjeIcon = ViewBag.CurrentSort == "Trajanje" ? "▲" : (ViewBag.CurrentSort == "Trajanje_desc" ? "▼" : "");
+    string duljinaIcon = ViewBag.CurrentSort == "Duljina" ? "▲" : (ViewBag.CurrentSort == "Duljina_desc" ? "▼" : "");
+    string datumIcon = ViewBag.CurrentSort == "Datum" ? "▲" : (ViewBag.CurrentSort == "Datum_desc" ? "▼" : "");
+    string korisnikIcon = ViewBag.CurrentSort == "Korisnik" ? "▲" : (ViewBag.CurrentSort == "Korisnik_desc" ? "▼" : "");
+}
+
+<p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Upis aktivnosti", "Create", null, new { @class = "btn btn-success btn-sm" })
+    }
+    @Html.ActionLink("Natrag na popis", "PopisAktivnosti", null, new { @class = "btn btn-primary btn-sm" })
+</p>
+
+<h4>Prikaži aktivnosti u razdoblju:</h4>
+<form action="@Url.Action("Planinarenje", "Aktivnostis")" method="get">
+    <label for="startDate">Od: </label>
+    <input type="date" id="startDate" name="startDate" />
+
+    <label for="endDate">do: </label>
+    <input type="date" id="endDate" name="endDate" />
+
+    <input type="submit" value="Filtriraj" />
+</form>
+
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            <a href="@Url.Action("Planinarenje", new { sortOrder = ViewBag.NazivSortParm})">Naziv @nazivIcon</a>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vrstaAktivnosti)
+        </th>
+        <th>
+            <a href="@Url.Action("Planinarenje", new { sortOrder = ViewBag.TrajanjeSortParm })">Trajanje @trajanjeIcon</a>
+        </th>
+        <th>
+            <a href="@Url.Action("Planinarenje", new { sortOrder = ViewBag.DuljinaSortParm })">Duljina @duljinaIcon</a>
+        </th>
+        <th>
+            <a href="@Url.Action("Planinarenje", new { sortOrder = ViewBag.DatumSortParm })">Datum @datumIcon</a>
+        </th>
+        @if (User.Identity.IsAuthenticated && (User as LogiraniKorisnik).IsInRole(OvlastKorisnik.Administrator))
+        {
+            <th>
+                <a href="@Url.Action("Hodanje", new { sortOrder = ViewBag.KorisnikSortParm })">Korisnik @korisnikIcon</a>
+            </th>
+        }
+        @if (User.Identity.IsAuthenticated)
+        {
+            <th>
+                Akcije
+            </th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nazivAktivnosti)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vrstaAktivnosti)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vrijemeTrajanjaAktivnosti)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.duljinaAktivnosti)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.datumAktivnosti)
+            </td>
+            @if (User.Identity.IsAuthenticated && (User as LogiraniKorisnik).IsInRole(OvlastKorisnik.Administrator))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.korisnikId)
+                </td>
+            }
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+                    @Html.ActionLink("Uredi", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-sm" })
+                    @Html.ActionLink("Detalji", "Details", new { id = item.ID }, new { @class = "btn btn-info btn-sm" })
+                    @Html.ActionLink("Izbriši", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            }
+        </tr>
+    }
+
+</table>

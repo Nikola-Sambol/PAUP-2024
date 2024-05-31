@@ -1,0 +1,43 @@
+﻿@using PAUP_2024.Razno
+@{
+    ViewBag.Title = "Activity Tracker";
+}
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <h1>Dobrodošli u Activity tracker!</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Već imate račun?</h2>
+            @Html.ActionLink("Prijava", "Prijava", "Korisnici", null, new { @class = "btn btn-primary" })
+        </div>
+        <div class="col-md-6">
+            <h2>Novi ste korisnik?</h2>
+            @Html.ActionLink("Registracija", "Registracija", "Korisnici", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+}
+else
+{
+    <h1>Dobrodošli u Activity tracker!</h1>
+    <h3>Odaberite što želite raditi! </h3>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            @Html.ActionLink("Unos", "Create", "Aktivnostis", null, new { @class = "btn btn-primary" })
+        </div>
+        <div class="col-md-3">
+            @Html.ActionLink("Popis aktivnosti", "PopisAktivnosti", "Aktivnostis", null, new { @class = "btn btn-primary" })
+        </div>
+        <div class="col-md-3">
+            @Html.ActionLink("Buduće aktivnosti", "Index", "PlaniranaAktivnosts", null, new { @class = "btn btn-primary" })
+        </div>
+        @if ((User as LogiraniKorisnik).IsInRole(OvlastKorisnik.Administrator))
+        {
+            <div class="col-md-3">
+                @Html.ActionLink("Korisnici", "Index", "Korisnici", null, new { @class = "btn btn-primary" })
+            </div>
+        }
+    </div>
+}

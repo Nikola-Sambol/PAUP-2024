@@ -1,0 +1,30 @@
+﻿@using PAUP_2024.Models
+@model List<Korisnik>
+@{
+    ViewBag.Title = "Popis korisnika";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Korisničko ime</th>
+            <th>Email</th>
+            <th>Prezime i ime</th>
+            <th>Ovlast</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kor in Model)
+        {
+            <tr>
+                <td>@kor.KorisnickoIme</td>
+                <td>@kor.Email</td>
+                <td>@kor.PrezimeIme</td>
+                <td>@(kor.Ovlast?.Naziv)</td>
+            </tr>
+        }
+    </tbody>
+</table>
