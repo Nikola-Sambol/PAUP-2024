@@ -207,7 +207,7 @@ namespace PAUP_2024.Controllers
               $"Srdačan pozdrav";
 
 
-                        string apiKey = "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";
+                        string apiKey = "";
                         await SendEmail(apiKey, toEmail, subject, body);
 
                         // Ažurirajte datum poslednje obavijesti
